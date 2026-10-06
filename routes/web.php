@@ -1,5 +1,12 @@
 <?php
+
+use App\Http\Controllers\BookController;
+
 use Illuminate\Support\Facades\Route;
 
-Route::view('/profil-kelas', 'profil-kelas')
-    ->name('profil-kelas');
+// Halaman utama
+Route::view('/', 'home')->name('home');
+
+// Rute Books (mencakup index, create, store, show, edit, update, destroy otomatis)
+Route::resource('books', BookController::class);
+
