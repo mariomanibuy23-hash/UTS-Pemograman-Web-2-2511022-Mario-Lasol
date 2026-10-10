@@ -3,122 +3,115 @@
 @section('title', 'Tambah Buku')
 
 @section('content')
-    <h1>Tambah Buku</h1>
+<style>
+    .form-box {
+        max-width: 500px;
+        margin: 30px auto;
+        padding: 20px;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-family: sans-serif;
+    }
+    .form-box h2 {
+        margin-top: 0;
+        margin-bottom: 20px;
+        font-size: 1.25rem;
+    }
+    .field {
+        margin-bottom: 12px;
+    }
+    .field label {
+        display: block;
+        margin-bottom: 4px;
+        font-weight: bold;
+        font-size: 0.9rem;
+    }
+    .field input, .field textarea {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    .error {
+        color: red;
+        font-size: 0.8rem;
+    }
+    .btn-group {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+    }
+    .btn-submit {
+        background: #0d6efd;
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+</style>
 
-    <form method="POST" action="{{ route('books.store') }}">
+<div class="form-box">
+    <h2>Tambah Buku Baru</h2>
+
+    <form action="{{ route('books.store') }}" method="POST">
         @csrf
 
-        <!-- 1. Judul (Title) -->
-        <div>
+        <div class="field">
             <label for="title">Judul Buku *</label>
-            <input
-                type="text"
-                id="title"
-                name="title"
-                value="{{ old('title') }}"
-            >
-            @error('title')
-                <small style="color: red;">{{ $message }}</small>
-            @enderror
+            <input type="text" id="title" name="title" value="{{ old('title') }}">
+            @error('title') <span class="error">{{ $message }}</span> @enderror
         </div>
 
-        <!-- 2. ISBN -->
-        <div>
+        <div class="field">
             <label for="isbn">ISBN</label>
-            <input
-                type="text"
-                id="isbn"
-                name="isbn"
-                value="{{ old('isbn') }}"
-            >
-            @error('isbn')
-                <small style="color: red;">{{ $message }}</small>
-            @enderror
+            <input type="text" id="isbn" name="isbn" value="{{ old('isbn') }}">
+            @error('isbn') <span class="error">{{ $message }}</span> @enderror
         </div>
 
-        <!-- 3. Penulis (Author) -->
-        <div>
+        <div class="field">
             <label for="author">Penulis *</label>
-            <input
-                type="text"
-                id="author"
-                name="author"
-                value="{{ old('author') }}"
-            >
-            @error('author')
-                <small style="color: red;">{{ $message }}</small>
-            @enderror
+            <input type="text" id="author" name="author" value="{{ old('author') }}">
+            @error('author') <span class="error">{{ $message }}</span> @enderror
         </div>
 
-        <!-- 4. Penerbit (Publisher) -->
-        <div>
+        <div class="field">
             <label for="publisher">Penerbit</label>
-            <input
-                type="text"
-                id="publisher"
-                name="publisher"
-                value="{{ old('publisher') }}"
-            >
-            @error('publisher')
-                <small style="color: red;">{{ $message }}</small>
-            @enderror
+            <input type="text" id="publisher" name="publisher" value="{{ old('publisher') }}">
+            @error('publisher') <span class="error">{{ $message }}</span> @enderror
         </div>
 
-        <!-- 5. Tahun Terbit (Published Year) -->
-        <div>
+        <div class="field">
             <label for="published_year">Tahun Terbit</label>
-            <input
-                type="number"
-                id="published_year"
-                name="published_year"
-                value="{{ old('published_year') }}"
-            >
-            @error('published_year')
-                <small style="color: red;">{{ $message }}</small>
-            @enderror
+            <input type="number" id="published_year" name="published_year" value="{{ old('published_year') }}">
+            @error('published_year') <span class="error">{{ $message }}</span> @enderror
         </div>
 
-        <!-- 6. Harga (Price) -->
-        <div>
+        <div class="field">
             <label for="price">Harga *</label>
-            <input
-                type="number"
-                step="0.01"
-                id="price"
-                name="price"
-                value="{{ old('price') }}"
-            >
-            @error('price')
-                <small style="color: red;">{{ $message }}</small>
-            @enderror
+            <input type="number" step="0.01" id="price" name="price" value="{{ old('price') }}">
+            @error('price') <span class="error">{{ $message }}</span> @enderror
         </div>
 
-        <!-- 7. Stok (Stock) -->
-        <div>
+        <div class="field">
             <label for="stock">Stok *</label>
-            <input
-                type="number"
-                id="stock"
-                name="stock"
-                value="{{ old('stock') }}"
-            >
-            @error('stock')
-                <small style="color: red;">{{ $message }}</small>
-            @enderror
+            <input type="number" id="stock" name="stock" value="{{ old('stock') }}">
+            @error('stock') <span class="error">{{ $message }}</span> @enderror
         </div>
 
-        <!-- 8. Deskripsi (Description) -->
-        <div>
+        <div class="field">
             <label for="description">Deskripsi</label>
-            <textarea
-                id="description"
-                name="description"
-            >{{ old('description') }}</textarea>
-            @error('description')
-                <small style="color: red;">{{ $message }}</small>
-            @enderror
+            <textarea id="description" name="description" rows="3">{{ old('description') }}</textarea>
+            @error('description') <span class="error">{{ $message }}</span> @enderror
         </div>
 
-        <button type="submit">Simpan</button>
+        <div class="btn-group">
+            <a href="{{ route('books.index') }}">Batal</a>
+            <button type="submit" class="btn-submit">Simpan</button>
+        </div>
     </form>
+</div>
 @endsection

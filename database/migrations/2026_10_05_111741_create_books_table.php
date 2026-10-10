@@ -8,16 +8,21 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('books', function (Blueprint $table): void {
+        Schema::create('books', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            
+            // Kolom Wajib (required)
+            $table->string('title', 255);
+            $table->string('author', 150);
+            $table->decimal('price', 12, 2); // Atau $table->unsignedBigInteger('price');
+            $table->integer('stock');
+            
+            // Kolom Opsional (nullable) - Harus diberi ->nullable()
             $table->string('isbn', 20)->nullable()->unique();
-            $table->string('author');
-            $table->string('publisher')->nullable();
+            $table->string('publisher', 150)->nullable();
             $table->unsignedSmallInteger('published_year')->nullable();
-            $table->decimal('price', 12, 2)->default(0);
-            $table->unsignedInteger('stock')->default(0);
             $table->text('description')->nullable();
+            
             $table->timestamps();
         });
     }

@@ -50,6 +50,44 @@
         nav span {
             color: #555;
         }
+
+        /* CSS Tambahan untuk Form Pencarian */
+        .search-form {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .search-form input[type="search"] {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 300px;
+            font-size: 14px;
+        }
+        .search-form button {
+            padding: 8px 16px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .search-form button:hover {
+            background-color: #218838;
+        }
+        .search-form a {
+            padding: 8px 16px;
+            background-color: #6c757d;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .search-form a:hover {
+            background-color: #5a6268;
+        }
         
         /* CSS untuk tata letak tombol Aksi */
         .action-group {
@@ -119,6 +157,23 @@
     @endif
 
     <h1>Data Buku</h1>
+
+    <!-- Form Pencarian -->
+    <form method="GET" action="{{ route('books.index') }}" class="search-form">
+        <input
+            type="search"
+            name="q"
+            value="{{ $keyword }}"
+            placeholder="Cari judul, penulis, atau ISBN"
+        >
+        <button type="submit">Cari</button>
+        <a href="{{ route('books.index') }}">Reset</a>
+    </form>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+    <a href="{{ route('books.create') }}" class="btn btn-primary">
+        + Tambah Buku Baru
+    </a>
+</div>
 
     <!-- Tabel Data Buku -->
     <table>

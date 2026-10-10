@@ -7,11 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
-    /** @use HasFactory<\Database\Factories\BookFactory> */
     use HasFactory;
-    /**
-     * @var list<string>
-     */
+
     protected $fillable = [
         'title',
         'isbn',
@@ -22,18 +19,6 @@ class Book extends Model
         'stock',
         'description',
     ];
-
-    /**
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'published_year' => 'integer',
-            'price' => 'decimal:2',
-            'stock' => 'integer',
-        ];
-    }
 }
 
 
